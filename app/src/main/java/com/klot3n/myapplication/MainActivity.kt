@@ -1,11 +1,15 @@
 package com.klot3n.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.klot3n.myapplication.activities.RegisterActivity
 //import android.widget.Toolbar
 import com.klot3n.myapplication.databinding.ActivityMainBinding
 import com.klot3n.myapplication.ui.fragments.ChatsFragment
 import com.klot3n.myapplication.ui.objects.AppDrawer
+import com.klot3n.myapplication.utilities.replaceActivity
+import com.klot3n.myapplication.utilities.replaceFragment
 
 private lateinit var mBinding: ActivityMainBinding
 private lateinit var mAppDrawer:AppDrawer
@@ -25,10 +29,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction().replace(R.id.dataContainer, ChatsFragment()).commit()
+        if (true) {
+            setSupportActionBar(mToolbar)
+            mAppDrawer.create()
+replaceFragment(ChatsFragment())
+        }else {
+            replaceActivity(RegisterActivity())
 
+        }
     }
 
 
