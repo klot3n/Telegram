@@ -3,17 +3,20 @@ package com.klot3n.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 import com.klot3n.myapplication.activities.RegisterActivity
 //import android.widget.Toolbar
 import com.klot3n.myapplication.databinding.ActivityMainBinding
 import com.klot3n.myapplication.ui.fragments.ChatsFragment
 import com.klot3n.myapplication.ui.objects.AppDrawer
+import com.klot3n.myapplication.utilities.AUTH
 import com.klot3n.myapplication.utilities.replaceActivity
 import com.klot3n.myapplication.utilities.replaceFragment
 
 private lateinit var mBinding: ActivityMainBinding
-private lateinit var mAppDrawer:AppDrawer
-private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
+private lateinit var mAppDrawer: AppDrawer
+private lateinit var mToolbar: Toolbar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +32,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if (true) {
+        if (AUTH.currentUser!=null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-replaceFragment(ChatsFragment())
-        }else {
+            replaceFragment(ChatsFragment())
+        } else {
             replaceActivity(RegisterActivity())
 
         }
@@ -41,9 +44,9 @@ replaceFragment(ChatsFragment())
 
 
     private fun initFields() {
-        mToolbar = mBinding.mainToolbar as androidx.appcompat.widget.Toolbar
-        mAppDrawer= AppDrawer(this, mToolbar)
-
+        mToolbar = mBinding.mainToolbar as Toolbar
+        mAppDrawer = AppDrawer(this, mToolbar)
+        AUTH= FirebaseAuth.getInstance()
 
     }
 }

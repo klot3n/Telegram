@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import com.klot3n.myapplication.R
 
 
-open class BaseFragment( layout:Int ) : Fragment(layout) {
-
+open class BaseFragment(layout: Int) : Fragment(layout) {
 
 
     override fun onStart() {

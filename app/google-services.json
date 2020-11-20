@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "474220413116",
+    "firebase_url": "https://telegram-bcb25.firebaseio.com",
+    "project_id": "telegram-bcb25",
+    "storage_bucket": "telegram-bcb25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474220413116:android:8c7648de1f570e28e3d0b9",
+        "android_client_info": {
+          "package_name": "com.klot3n.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474220413116-22eclcnof9rf434kjtn991jbk0dc85bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZivZcBK3VfBqg_IQvjB_bpxpioz2aq1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474220413116-22eclcnof9rf434kjtn991jbk0dc85bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
