@@ -25,6 +25,6 @@ class RegisterActivity : AppCompatActivity() {
         mTootbar = mBinding.registerToolbar
         setSupportActionBar(mTootbar)
         title = getString(R.string.register_title_your_phone)
-        replaceFragment(EnterPhoneNumberFragment())
+        replaceFragment(EnterPhoneNumberFragment(),false)    //addStack (funs.kt)"Залупливает" почему-то ввод телефона
     }
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "517928325745",
+    "firebase_url": "https://telegram-ccdce.firebaseio.com",
+    "project_id": "telegram-ccdce",
+    "storage_bucket": "telegram-ccdce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517928325745:android:779e3ccec72aac4bfe01d0",
+        "android_client_info": {
+          "package_name": "com.klot3n.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517928325745-j2gojsebgahn6nbirteerj12dsguu29s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqMYetdkb8miQUGuVRIVAWqtlarcU7c2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517928325745-j2gojsebgahn6nbirteerj12dsguu29s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
