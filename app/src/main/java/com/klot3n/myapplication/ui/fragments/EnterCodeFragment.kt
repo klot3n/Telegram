@@ -7,34 +7,43 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.klot3n.myapplication.MainActivity
 import com.klot3n.myapplication.R
 import com.klot3n.myapplication.activities.RegisterActivity
-import com.klot3n.myapplication.utilities.AUTH
-import com.klot3n.myapplication.utilities.AppTextWatcher
-import com.klot3n.myapplication.utilities.replaceActivity
-import com.klot3n.myapplication.utilities.showToast
+import com.klot3n.myapplication.utilities.*
 import kotlinx.android.synthetic.main.fragment_enter_code.*
 
 
-class EnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.layout.fragment_enter_code) {
+class EnterCodeFragment(val phoneNumber: String, val id: String) :
+    Fragment(R.layout.fragment_enter_code) {
 
     override fun onStart() {
-        (activity as RegisterActivity).title=phoneNumber
+        (activity as RegisterActivity).title = phoneNumber
         super.onStart()
         register_input_code.addTextChangedListener(AppTextWatcher {
-                val string = register_input_code.text.toString()
-                if (string.length == 6) {
-                    enterCode()
-                }
+            val string = register_input_code.text.toString()
+            if (string.length == 6) {
+                enterCode()
+            }
 
         })
     }
 
     private fun enterCode() {
-        val code=register_input_code.text.toString()
-        val credential:PhoneAuthCredential=PhoneAuthProvider.getCredential(id,code)
-        AUTH.signInWithCredential(credential).addOnCompleteListener { task->
-            if(task.isSuccessful){
-                showToast("Добро пожаловать")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
+        val code = register_input_code.text.toString()
+        val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(id, code)
+        AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val uid = AUTH.currentUser?.uid.toString()
+                val dateMap = mutableMapOf<String, Any>()
+                dateMap[CHILD_ID] = uid
+                dateMap[CHILD_PHONE] = phoneNumber
+                dateMap[CHILD_USERNAME] = uid
+
+                REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
+                    .addOnCompleteListener { task2 ->
+                        if (task2.isSuccessful) {
+                            showToast("Добро пожаловать")
+                            (activity as RegisterActivity).replaceActivity(MainActivity())
+                        } else showToast(task2.exception?.message.toString())
+                    }
             } else showToast(task.exception?.message.toString())
         }
     }

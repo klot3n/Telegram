@@ -10,6 +10,7 @@ import com.klot3n.myapplication.databinding.ActivityMainBinding
 import com.klot3n.myapplication.ui.fragments.ChatsFragment
 import com.klot3n.myapplication.ui.objects.AppDrawer
 import com.klot3n.myapplication.utilities.AUTH
+import com.klot3n.myapplication.utilities.initFirebase
 import com.klot3n.myapplication.utilities.replaceActivity
 import com.klot3n.myapplication.utilities.replaceFragment
 
@@ -17,7 +18,7 @@ import com.klot3n.myapplication.utilities.replaceFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
-    private lateinit var mAppDrawer:AppDrawer
+    internal lateinit var mAppDrawer: AppDrawer
     private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +34,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if (AUTH.currentUser!=null) {
+        if (AUTH.currentUser != null) {
             setSupportActionBar(mToolbar)
             mAppDrawer.create()
-replaceFragment(ChatsFragment(),false)  //addStack (funs.kt)"Залупливает" почему-то ввод телефона
-        }else {
+            replaceFragment(
+                ChatsFragment(),
+                false
+            )  //addStack (funs.kt)"Залупливает" почему-то ввод телефона
+        } else {
             replaceActivity(RegisterActivity())
 
         }
@@ -46,8 +50,8 @@ replaceFragment(ChatsFragment(),false)  //addStack (funs.kt)"Залуплива�
 
     private fun initFields() {
         mToolbar = mBinding.mainToolbar as androidx.appcompat.widget.Toolbar
-        mAppDrawer= AppDrawer(this, mToolbar)
-        AUTH= FirebaseAuth.getInstance()
+        mAppDrawer = AppDrawer(this, mToolbar)
+        initFirebase()
 
 
     }

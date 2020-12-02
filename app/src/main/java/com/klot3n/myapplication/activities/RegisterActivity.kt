@@ -6,6 +6,7 @@ import com.klot3n.myapplication.databinding.ActivityRegisterBinding
 import androidx.appcompat.widget.Toolbar
 import com.klot3n.myapplication.R
 import com.klot3n.myapplication.ui.fragments.EnterPhoneNumberFragment
+import com.klot3n.myapplication.utilities.initFirebase
 import com.klot3n.myapplication.utilities.replaceFragment
 
 
@@ -18,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        initFirebase()
     }
 
     override fun onStart() {
