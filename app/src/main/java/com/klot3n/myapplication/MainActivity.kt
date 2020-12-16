@@ -4,15 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.klot3n.myapplication.activities.RegisterActivity
 //import android.widget.Toolbar
 import com.klot3n.myapplication.databinding.ActivityMainBinding
+import com.klot3n.myapplication.models.User
 import com.klot3n.myapplication.ui.fragments.ChatsFragment
 import com.klot3n.myapplication.ui.objects.AppDrawer
-import com.klot3n.myapplication.utilities.AUTH
-import com.klot3n.myapplication.utilities.initFirebase
-import com.klot3n.myapplication.utilities.replaceActivity
-import com.klot3n.myapplication.utilities.replaceFragment
+import com.klot3n.myapplication.utilities.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,7 +53,15 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar as androidx.appcompat.widget.Toolbar
         mAppDrawer = AppDrawer(this, mToolbar)
         initFirebase()
+        initUser()
 
 
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener{
+                USER= it.getValue(User::class.java)!!?:User()
+            })
     }
 }
